@@ -7,7 +7,10 @@ import {
 
 export default class Composer extends React.Component {
   onChange(e) {
-    const contentSize = e.nativeEvent.contentSize;
+    const contentSize = e.nativeEvent.contentSize || {
+      height: e.nativeEvent.target.clientHeight,
+      width: e.nativeEvent.target.clientWidth
+    }
     if (!this.contentSize) {
       this.contentSize = contentSize;
       this.props.onInputSizeChanged(this.contentSize);
